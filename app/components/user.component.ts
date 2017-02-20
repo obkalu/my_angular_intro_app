@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Form, FormControl } from '@angular/forms'
 import { PostsService } from '../services/posts.service';
 
 @Component({
@@ -40,9 +41,9 @@ export class UserComponent  {
     }
   }
 
-  addHobby(hobby:string) {
-    this.hobbies.push(hobby);
-    hobby = ''; 
+  addHobby(hobby:FormControl) {
+    this.hobbies.push(hobby.value);
+    hobby.value = '';
   }
 
   deleteHobby(i:number) {
