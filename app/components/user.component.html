@@ -1,0 +1,61 @@
+            <style type="text/css">
+                form > input {width:100%;}
+            </style>
+            <h1>{{name}}</h1>
+            <p><b>Email Address:</b> <a href="mailto:obkalu@gmail.com">{{email}}</a></p>
+            <p><b>Office Address:</b> {{address.street}}, {{address.city}}, {{address.state}} {{address.zipcode}}</p>
+            <button (click)=toggleHobbies()>{{showHobbbies ? "Hide Hobbies" : "Show Hobbies"}}</button>
+            <div *ngIf="showHobbbies">
+              <p><b>Hobbies:</b>
+              <ul>
+                  <li *ngFor="let hobby of hobbies; let i=index">
+                      {{hobby}} <button (click)="deleteHobby(i)">X</button>
+                  </li>
+              </ul>
+              <form (submit)="addHobby(hobby.value)">
+                <label for="hobby">Add Hobby: </label><br/>
+                <input id="hobby" type="text" #hobby placeholder="Add Hobby"/>
+              </form>
+            </div> <br/><br/>
+
+            <hr style="border:1px solid;" />
+            <h3>Edit User Profile</h3>
+            <form>
+              <label for="name">Name: </label><br/>
+              <input id="name" type="text" name="name" [(ngModel)]="name" /><br/><br/>
+              <label for="email">Email: </label><br/>
+              <input id="email" type="text" name="email" [(ngModel)]="email" /><br/><br/>
+              <label for="street">Street: </label><br/>
+              <input id="street" type="text" name="address.street" [(ngModel)]="address.street" /><br/><br/>
+              <label for="city">City: </label><br/>
+              <input id="city" type="text" name="address.city" [(ngModel)]="address.city" /><br/><br/>
+              <label for="state">State: </label><br/>
+              <input id="state" type="text" name="address.state" [(ngModel)]="address.state" /><br/><br/>
+              <label for="zipcode">Zip Code: </label><br/>
+              <input id="zipcode" type="text" name="address.zipcode" [(ngModel)]="address.zipcode" /><br/><br/>                          
+            </form>
+            <hr />
+            <h3>Posts</h3>
+            <div>
+                <div *ngFor="let post of posts; let i=index">
+                    <div>{{i+1}}. <h3 style="display: inline">{{post.title}}</h3></div>
+                    <div>{{post.body}}</div>
+                    <hr style="border:1px dotted;"/>               
+                </div>
+                <!--<table cellspacing="2" cellpadding"2" border="1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Post Title</th>
+                            <th>Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let post of posts; let i=index">
+                            <td>{{i+1}}.</td>
+                            <td><h3>{{post.title}}</h3></td>
+                            <td>{{post.body}}</td>
+                        </tr>
+                    </tbody>
+                </table>-->
+            </div>
